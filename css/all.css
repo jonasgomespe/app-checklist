@@ -62,6 +62,8 @@ body,html{
 }
 .checklist .container-lista div{
     width: 90%;
+    height: 200px;
+    overflow-y: auto;
 }
 .checklist .container-lista table{
     text-align: left;
