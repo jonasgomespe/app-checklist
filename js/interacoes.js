@@ -4,23 +4,26 @@ const tarefasInput         = document.querySelector("#tarefasText");
 const botaoCadastrarTarefa = document.querySelector("#botao-cadastrar");
 var valoresTarefas         = document.querySelector("#valoresTarefas tbody");
 var quantidade             = 0;
+var valoresTrs             = "";
+var ultimoValor            = localStorage.length;
+
+if(localStorage.getItem){
+    for( var i = 0; i < ultimoValor; i++ ){
+        valoresTarefas.innerHTML += '<tr> <td>'+ i +'</td> <td>'+ localStorage.getItem(i) +'</td> <td>+</td> <td>-</td> </tr>';    
+    }
+    quantidade = ultimoValor;
+}
 
 botaoCadastrarTarefa.onclick = () => {
-    var ultimoValor               = localStorage.length;
-    quantidade = (ultimoValor > quantidade) ? ultimoValor + 1 : quantidade;
-    
+    //quantidade = (ultimoValor > quantidade) ? ultimoValor + 1 : quantidade;
     var dadosTarefa               = tarefasInput.value;
     localStorage.setItem(quantidade,dadosTarefa);
-    var valoresTrs = '<tr> <td>'+localStorage.key(0)+'</td> <td>'+ localStorage.getItem(0) +'</td> <td>+</td> <td>-</td> </tr>';
+    //valoresTrs += '<tr> <td>'+localStorage.key(quantidade)+'</td> <td>'+ localStorage.getItem(quantidade) +'</td> <td>+</td> <td>-</td> </tr>';
     
-    for(var i = 0; i < ultimoValor; i++){
-       valoresTrs += '<tr> <td>'+localStorage.key(i)+'</td> <td>'+ localStorage.getItem((ultimoValor < 1) ? 0 : ultimoValor) +'</td> <td>+</td> <td>-</td> </tr>';
-    }
-    
-    valoresTarefas.innerHTML=valoresTrs;
+    valoresTarefas.innerHTML += '<tr> <td>'+ quantidade +'</td> <td>'+ localStorage.getItem(quantidade) +'</td> <td>+</td> <td>-</td> </tr>';
     quantidade++;
-
 }
+//console.log(valoresTrs);  
 
 
 
